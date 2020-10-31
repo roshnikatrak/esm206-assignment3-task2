@@ -195,9 +195,9 @@ In the code chunk below, create a vector (using `c()`, as above) stored as `some
 
 ```{r}
 # Your code here: 
-some_dates <- c(11061972, 02142007, 01301843)
-some_dates_converted <- mdy(some_dates)
-class(some_dates_converted)
+some_dates <- c(11061972, 02142007, 01301843) #vector of dates without spaces
+some_dates_converted <- mdy(some_dates) #convert to Date class
+class(some_dates_converted) #check the class
 ```
 
 #### 3C. Follow me
@@ -295,7 +295,11 @@ Note: If you add another condition within `case_when()` that is `TRUE ~ "some th
 
 ```{r}
 # Your code here: 
-
+storms_danger <- storms %>% #start with storms dataset
+  mutate(danger = case_when( #add new column danger
+    status == "hurricane" ~ "high", #if status is hurricane, danger is high
+    TRUE ~ "moderate" #every other status is moderate danger
+  ))
 
 ```
 

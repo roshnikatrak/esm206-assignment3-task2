@@ -525,9 +525,9 @@ my_dates_converted # Return my_dates_converted</code></pre>
 <h4>3B. On your own</h4>
 <p>In the code chunk below, create a vector (using <code>c()</code>, as above) stored as <code>some_dates</code> that contains three values that represent dates as numbers, in mdy format: 11061972, 02142007,01301843. Then in the next line, use <code>lubridate::mdy()</code> to return them in date format, storing as a vector <code>some_dates_converted</code>. Write a third line to check the class of that vector.</p>
 <pre class="r"><code># Your code here: 
-some_dates &lt;- c(11061972, 02142007, 01301843)
-some_dates_converted &lt;- mdy(some_dates)
-class(some_dates_converted)</code></pre>
+some_dates &lt;- c(11061972, 02142007, 01301843) #vector of dates without spaces
+some_dates_converted &lt;- mdy(some_dates) #convert to Date class
+class(some_dates_converted) #check the class</code></pre>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 </div>
 <div id="c.-follow-me" class="section level4">
@@ -620,7 +620,12 @@ storm_season &lt;- storms %&gt;% # Start from storms data
 <p>4A. On your own</p>
 <p>Create a new version of storms called <code>storms_danger</code> in which you add a new column <code>danger</code> where if the status matches “hurricane”, then the danger column contains “high”; if the status is anything other than “hurricane”, then the danger column contains “moderate”. <strong>Hint:</strong> remember that when looking for a match, we use <code>==</code>.</p>
 <p>Note: If you add another condition within <code>case_when()</code> that is <code>TRUE ~ &quot;some thing&quot;</code>, then any entry that hasn’t been specified by previous conditions will get that “catch all” statement.</p>
-<pre class="r"><code># Your code here: </code></pre>
+<pre class="r"><code># Your code here: 
+storms_danger &lt;- storms %&gt;% #start with storms dataset
+  mutate(danger = case_when( #add new column danger
+    status == &quot;hurricane&quot; ~ &quot;high&quot;, #if status is hurricane, danger is high
+    TRUE ~ &quot;moderate&quot; #every other status is moderate danger
+  ))</code></pre>
 </div>
 </div>
 <div id="practice-version-control-wgit" class="section level2">
